@@ -148,21 +148,19 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
       "types": "./types/index.d.ts"
-    },
-    "./data": {
-      "import": "./src/data.js",
-      "require": "./lib/data.cjs"
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./types/index.d.ts",
   "files": [
     "README.md",
     "LICENSE",
-    "dist/*.mjs",
+    "dist/index.mjs",
+    "dist/index.cjs",
     "types/index.d.ts"
   ],
   "scripts": {
@@ -227,6 +225,7 @@
     "@mocha/contributors": "git+https://github.com/commenthol/contributors.git#semver:1.1.0-0",
     "babel-loader": "^9.2.1",
     "dtslint": "^4.2.1",
+    "esbuild": "^0.25.2",
     "eslint": "^8.57.1",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.31.0",
