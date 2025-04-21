@@ -159,9 +159,6 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./types/index.d.ts",
-  "bin": {
-    "holidays2json": "scripts/holidays2json.cjs"
-  },
   "files": [
     "README.md",
     "LICENSE",
@@ -169,6 +166,7 @@
     "types/index.d.ts"
   ],
   "scripts": {
+    "publish-npm": "npm publish --access public",
     "build-bundled": "npx esbuild src/index.js --bundle --platform=browser --outfile=dist/index.mjs --format=esm --minify"
   },
   "commitlint": {
