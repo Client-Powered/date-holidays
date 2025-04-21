@@ -1,24 +1,23 @@
 {
-  "name": "date-holidays",
-  "version": "3.24.2",
+  "name": "date-holidays-bundled",
+  "version": "0.0.1",
   "description": "worldwide holidays",
   "keywords": [
     "holidays",
     "world"
   ],
-  "homepage": "https://github.com/commenthol/date-holidays",
+  "homepage": "https://github.com/Client-Powered/date-holidays",
   "bugs": {
-    "url": "https://github.com/commenthol/date-holidays/issues"
+    "url": "https://github.com/Client-Powered/date-holidays/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/commenthol/date-holidays.git"
+    "url": "git+https://github.com/Client-Powered/date-holidays.git"
   },
   "license": "(ISC AND CC-BY-3.0)",
-  "author": "commenthol <commenthol@gmail.com>",
+  "author": "bigbizze <charles@clientpowered.com>",
   "maintainers": [
-    "commenthol <commenthol@gmail.com>",
-    "Ryan Gerry <rgerry@bluemarblepayroll.com>"
+    "bigbizze <charles@clientpowered.com>"
   ],
   "contributors": [
     "0xflotus <0xflotus@gmail.com>",
@@ -39,6 +38,7 @@
     "Braeden Paradine <bparadine@gmail.com>",
     "Brandon Bay <brandon.bay@gmail.com>",
     "Brian Keifer <brian@valinor.net>",
+    "bigbizze <charles@clientpowered.com>",
     "Christian Schinnerl <Schinnerl.Christian@gmail.com>",
     "Cristian Andrade <cr.andrade.m@gmail.com>",
     "Cristóbal Berríos <crisberrios@uc.cl>",
@@ -147,8 +147,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "require": "./lib/index.cjs",
+      "import": "./dist/index.mjs",
       "types": "./types/index.d.ts"
     },
     "./data": {
@@ -157,38 +156,20 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "./lib/index.cjs",
-  "module": "./src/index.js",
-  "types": "./types",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./types/index.d.ts",
   "bin": {
     "holidays2json": "scripts/holidays2json.cjs"
   },
-  "directories": {
-    "lib": "lib",
-    "doc": "docs",
-    "test": "test"
-  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist/*.mjs",
+    "types/index.d.ts"
+  ],
   "scripts": {
-    "all": "npm-run-all clean build lint test doc:tree doc:attrib webpack",
-    "build": "npm-run-all yaml build:only",
-    "build:only": "rollup -c",
-    "changelog": "contributors && node scripts/gitlog.cjs",
-    "ci": "TEST_XXL=1 npm-run-all yaml build test",
-    "clean": "rimraf lib dist src/data.js",
-    "clean:all": "npm-run-all clean clean:modules",
-    "clean:modules": "rimraf node_modules",
-    "doc:attrib": "node scripts/attributions.cjs",
-    "doc:tree": "node scripts/addtree.cjs",
-    "lint": "eslint --fix --ext .js,.cjs,.yaml .",
-    "prepublishOnly": "npm run all",
-    "test": "npm-run-all test:ci",
-    "test:ci": "mocha",
-    "test:ts": "dtslint types",
-    "watch": "watch-run -p data/countries/*.yaml npm run yaml",
-    "webpack": "webpack",
-    "webpack:analyze": "webpack",
-    "yaml": "node scripts/holidays2json.cjs",
-    "prepare": "husky install"
+    "build-bundled": "npx esbuild src/index.js --bundle --platform=browser --outfile=dist/index.mjs --format=esm --minify"
   },
   "commitlint": {
     "extends": [
